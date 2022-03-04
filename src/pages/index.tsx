@@ -62,39 +62,23 @@ const getMorePosts = async ({
   setPosts(newPosts);
 };
 
-export default function Home(postsPagination: PostPagination): JSX.Element {
-  const [posts, setPosts] = useState<PostPagination>({
-    ...postsPagination,
-    results: postsPagination?.results?.map(post => ({
-      ...post,
-      first_publication_date: format(
-        new Date(post.first_publication_date),
-        'dd MMM yyyy',
-        {
-          locale: ptBR,
-        }
-      ),
-    })),
-  });
+export default function Home({
+  postsPagination,
+}: {
+  postPagination: PostPagination;
+}): JSX.Element {
+  const [posts, setPosts] = useState(postsPagination);
 
   async function loadMorePosts(): Promise<void> {
     const response = await fetch(`${posts.next_page}`).then(data =>
       data.json()
     );
-
     const postsResponseResults = response.results.map(post => ({
       ...post,
-      first_publication_date: format(
-        new Date(post.first_publication_date),
-        'dd MMM yyyy',
-        {
-          locale: ptBR,
-        }
-      ),
+      first_publication_date: post.first_publication_date,
     }));
 
     const newPosts = {
-      ...posts,
       next_page: response.next_page,
       results: [...posts.results, ...postsResponseResults],
     };
@@ -114,15 +98,13 @@ export default function Home(postsPagination: PostPagination): JSX.Element {
                 <span>
                   <FiCalendar size="1.25rem" />
                   <time>
-                    {post.first_publication_date
-                      ? format(
-                          new Date(post.first_publication_date),
-                          'dd MMM yyyy',
-                          {
-                            locale: ptBR,
-                          }
-                        )
-                      : ''}
+                    {format(
+                      new Date(post?.first_publication_date),
+                      'dd MMM yyyy',
+                      {
+                        locale: ptBR,
+                      }
+                    )}
                   </time>
                 </span>
                 <span>
@@ -173,6 +155,6 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   });
   return {
-    props: { next_page, results: posts },
+    props: { postsPagination: { next_page, results: posts } },
   };
 };

@@ -51,7 +51,7 @@ export default function Post({ post }: PostProps): JSX.Element {
     post && (post.data.content.reduce(acountWordsContent, 0) / 150).toFixed(0);
   return (
     <>
-      {post.data.content.body ? '' : <>Carregando...</>}
+      <div {...{ hidden: !![post].length }}>Carregando...</div>
       {post ? (
         <>
           <Header />
