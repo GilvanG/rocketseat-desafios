@@ -1,0 +1,44 @@
+.content {
+  margin: 5rem 21.875rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  // justify-content: center;
+  text-align: justify;
+  flex-direction: column;
+  h1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 3rem;
+    line-height: 3.625rem;
+
+    letter-spacing: -0.03125rem;
+
+    color: var(--heading);
+  }
+}
+.heading {
+  margin: 3.36rem auto;
+  font-weight: bold;
+  font-size: 2.4rem;
+  line-height: 140%;
+
+  text-align: justify;
+  color: var(--heading);
+}
+
+.bodyContent {
+  p {
+    font-weight: normal;
+    font-size: 1.125rem;
+    line-height: 140%;
+
+    text-align: justify;
+
+    color: var(--body);
+    margin: 1.575rem auto;
+  }
+  a {
+    color: var(--highlight);
+  }
+}
