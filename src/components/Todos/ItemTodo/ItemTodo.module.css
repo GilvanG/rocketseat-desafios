@@ -1,0 +1,91 @@
+.listItem {
+  padding: 1rem;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+
+  border-radius: 8px;
+  background: var(--gray-400);
+  border: 1px solid #333333;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.listItem:not(:first-child) {
+  margin-top: 0.75rem;
+}
+
+.listItemToggle,
+.listItemToggleSelected {
+  width: 22px;
+  height: 22px;
+
+  grid-area: toggle;
+
+  cursor: pointer;
+  border-radius: 999px;
+}
+
+.listItemToggle {
+  border: 2px solid var(--blue-400);
+  background: none;
+}
+
+.listItemToggleSelected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--gray-100);
+  border: 3px solid var(--purple-700);
+  background: var(--purple-700);
+}
+
+.listItemText,
+.listItemTextSelected {
+  width: 90%;
+  grid-area: text;
+
+  text-align: justify;
+  color: var(--gray-100);
+}
+
+.listItemTextSelected {
+  color: var(--gray-300);
+  text-decoration-line: line-through;
+}
+
+.listItemDeleteButton {
+  display: flex;
+  grid-area: delete;
+
+  border: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+  color: var(--gray-300);
+  background-color: transparent;
+}
+
+.listItemDeleteButton:hover {
+  color: var(--red-500);
+}
+
+@media (max-width: 600px) {
+  .listItem {
+    display: grid;
+    grid-template-areas:
+      'toggle delete'
+      'text text';
+    grid-template-columns: fit-content fit-content;
+    grid-template-rows: fit-content fit-content;
+    place-items: center;
+  }
+  .listItemText,
+  .listItemTextSelected {
+    border-top: 1px solid var(--gray-350);
+    padding-top: 10px;
+
+    width: 100%;
+    text-align: center;
+  }
+}
